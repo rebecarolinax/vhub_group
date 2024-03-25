@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\40666090823\\Desktop\\vhub_group\\webapi.vitalhub\\WebAPI\\WebAPI.csproj": {}
+    "C:\\Users\\54931473865\\Desktop\\vhub_group\\webapi.vitalhub\\WebAPI\\WebAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\40666090823\\Desktop\\vhub_group\\webapi.vitalhub\\WebAPI\\WebAPI.csproj": {
+    "C:\\Users\\54931473865\\Desktop\\vhub_group\\webapi.vitalhub\\WebAPI\\WebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\40666090823\\Desktop\\vhub_group\\webapi.vitalhub\\WebAPI\\WebAPI.csproj",
+        "projectUniqueName": "C:\\Users\\54931473865\\Desktop\\vhub_group\\webapi.vitalhub\\WebAPI\\WebAPI.csproj",
         "projectName": "WebAPI",
-        "projectPath": "C:\\Users\\40666090823\\Desktop\\vhub_group\\webapi.vitalhub\\WebAPI\\WebAPI.csproj",
-        "packagesPath": "C:\\Users\\40666090823\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\40666090823\\Desktop\\vhub_group\\webapi.vitalhub\\WebAPI\\obj\\",
+        "projectPath": "C:\\Users\\54931473865\\Desktop\\vhub_group\\webapi.vitalhub\\WebAPI\\WebAPI.csproj",
+        "packagesPath": "C:\\Users\\54931473865\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\54931473865\\Desktop\\vhub_group\\webapi.vitalhub\\WebAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\40666090823\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\54931473865\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -86,6 +86,24 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[7.0.15, 7.0.15]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[7.0.15, 7.0.15]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[7.0.15, 7.0.15]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[7.0.15, 7.0.15]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"

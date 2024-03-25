@@ -1,4 +1,4 @@
-import { HeaderPaciente } from '../../components/Header/HeaderPaciente/HeaderPaciente'
+import { Header } from "../../components/Header/Header";
 import { ListComponent } from '../../components/Lista/Lista'
 import { CardPaciente } from '../../components/Cards/CardPaciente/CardPaciente'
 import { ModalConsulta } from '../../components/Modals/ModalConsulta/ModalConsulta'
@@ -26,7 +26,7 @@ export const PacienteConsulta = ({ navigation }) => {
     return (
         <ContainerConsulta>
             {/* Header */}
-            <HeaderPaciente />
+            <Header />
 
             {/* Calendário */}
             <CalendarList />
