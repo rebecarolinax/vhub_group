@@ -15,24 +15,27 @@ import { Link, LinkBlue } from "../../components/Link/Style";
 import { useState } from "react";
 
 import api from "../../services/service";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const Login = ({ navigation }) => {
-  const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
+  const [email, setEmail] = useState("elza@elza.com");
+  const [senha, setSenha] = useState("elza");
 
   async function Login() {
-    await api
-      .post("/Login", {
+    try {
+      const response = await api.post('/Login', {
         email: email,
-        senha: senha,
-      })
-      .then((response) => {
-        console.log(response);
-      }).catch(error => {
-        console.log(error)
-      })
+        senha: senha
+      });
 
-    // navigation.navigate("Main");
+      await AsyncStorage.setItem('token', JSON.stringify(response.data))
+
+
+      navigation.navigate("Main")
+    } catch (error) {
+
+      console.error("Erro na chamada da API:", error);
+    }
   }
 
   return (
