@@ -5,8 +5,33 @@ import { BtnCinza, BtnPerfil, BtnTitle, } from "../../components/Button/Style"
 import { ProfilePic } from "../../components/Image/Style"
 import { InputBox } from "../../components/InputBox/Index"
 import { PerfilInput } from "../../components/Input/PerfilInput/Index"
+import { useEffect, useState } from "react"
+import AsyncStorage from "@react-native-async-storage/async-storage"
+import { userDecodeToken } from "../../../Utils/Auth"
 
-export const Perfil = () => {
+export const Perfil = ({navigation}) => {
+
+    const [name,setName]= useState("")
+    const [email,setEmail]= useState("")
+
+    async function logout(){
+        await AsyncStorage.removeItem("token")
+        navigation.navigate("Login")
+
+    }
+
+    async function profileLoad() {
+        const token = await userDecodeToken();
+    
+        if (token) {
+          setName(token.name);
+          setEmail(token.email)
+        }
+      }
+    
+      useEffect(() => {
+        profileLoad();
+      }, []);
     return (
         <ScrollForm>
             <ContainerP>
@@ -16,8 +41,8 @@ export const Perfil = () => {
                 >
 
                     <ContainerLevantado>
-                        <TitleBlack>Richard Kosta</TitleBlack>
-                        <Subtitle>richard.kosta@gmail.com</Subtitle>
+                        <TitleBlack>{name}</TitleBlack>
+                        <Subtitle>{email}</Subtitle>
                     </ContainerLevantado>
                 </ProfilePic>
 
@@ -57,7 +82,7 @@ export const Perfil = () => {
                 <BtnPerfil>
                     <BtnTitle>EDITAR</BtnTitle>
                 </BtnPerfil>
-                <BtnCinza>
+                <BtnCinza onPress={() => logout()}>
                     <BtnTitle>Sair do app</BtnTitle>
                 </BtnCinza>
             </ContainerP>

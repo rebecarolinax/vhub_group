@@ -1,12 +1,28 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { ClinicContent, ContainerC } from "../../components/Container/Style"
 import { TitleBlack } from "../../components/Title/Style"
 import { CardClinic } from "../../components/Cards/CardClinica/CardClinica"
 import { ListClinic } from "../../components/Cards/CardClinica/Style"
 import { BtnSub, BtnSubText } from "../../components/Modals/ModalCancel/Style"
 import { BtnModal, BtnTitle } from "../../components/Button/Style"
+import api from "../../services/service"
 
 export const Clinica = ({ navigation }) => {
+const [clinicaLista,setClinicaLista]= useState([]);
+
+async function ListarClinicas() {
+    await api.get("/Clinica/ListarTodas")
+    .then(response=> {
+        setClinicaLista(response.data)
+    }).catch(error=>{
+        console.log(error)
+    })
+}
+
+useEffect (()=> {
+    ListarClinicas()
+},[])
+
     const SelecionarClinica = [
         {
             id: 1, nome: 'Clinica',

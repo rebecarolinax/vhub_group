@@ -1,4 +1,3 @@
-import { HeaderPaciente } from '../../components/Header/HeaderPaciente/HeaderPaciente'
 import { ListComponent } from '../../components/Lista/Lista'
 import { CardPaciente } from '../../components/Cards/CardPaciente/CardPaciente'
 import { ModalConsulta } from '../../components/Modals/ModalConsulta/ModalConsulta'
@@ -9,6 +8,7 @@ import { FontAwesome6 } from '@expo/vector-icons';
 import CalendarList from "../../components/Calendario/Index";
 import { ContainerBtn, ContainerConsulta, ContainerMedico, MedicalInstrument } from '../../components/Container/Style'
 import { BtnCadastroM } from '../../components/Button/BtnCadastro/BtnCadastro'
+import { Header } from '../../components/Header/Header'
 
 const ConsultasPaciente = [
     { id: 1, nome: 'Richard', situacao: "pendente" },
@@ -26,7 +26,7 @@ export const PacienteConsulta = ({ navigation }) => {
     return (
         <ContainerConsulta>
             {/* Header */}
-            <HeaderPaciente />
+            <Header />
 
             {/* Calendário */}
             <CalendarList />

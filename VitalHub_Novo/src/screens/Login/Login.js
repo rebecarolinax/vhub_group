@@ -14,11 +14,13 @@ import { AntDesign } from "@expo/vector-icons";
 import { Link, LinkBlue } from "../../components/Link/Style";
 import { useState } from "react";
 
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 import api from "../../services/service";
 
 export const Login = ({ navigation }) => {
-  const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
+  const [email, setEmail] = useState("rayssa@gmail.com");
+  const [senha, setSenha] = useState("r1234");
 
   async function Login() {
     await api
@@ -26,13 +28,14 @@ export const Login = ({ navigation }) => {
         email: email,
         senha: senha,
       })
-      .then((response) => {
-        console.log(response);
-      }).catch(error => {
-        console.log(error)
-      })
+      .then(async (response) => {
+        await AsyncStorage.setItem("token", JSON.stringify(response.data));
 
-    // navigation.navigate("Main");
+        navigation.navigate("Main");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   return (

@@ -1,5 +1,8 @@
-import { useState } from "react";
-import { ContainerBtnSub, ContainerConsulta } from "../../components/Container/Style";
+import { useEffect, useState } from "react";
+import {
+  ContainerBtnSub,
+  ContainerConsulta,
+} from "../../components/Container/Style";
 import { BtnCadastro } from "../../components/Button/Style";
 import { CardPaciente } from "../../components/Cards/CardPaciente/CardPaciente";
 import { ModalCancel } from "../../components/Modals/ModalCancel/ModalCancel";
@@ -10,90 +13,91 @@ import { Header } from "../../components/Header/Header";
 import CalendarList from "../../components/Calendario/Index";
 import { BtnCadastroM } from "../../components/Button/BtnCadastro/BtnCadastro";
 
+import api from "../../services/service";
+
 const Consultas = [
-    { id: 1, nome: 'Carlos', situacao: "pendente" },
-    { id: 2, nome: 'Carlos', situacao: "realizado" },
-    { id: 3, nome: 'Carlos', situacao: "cancelado" },
-    { id: 4, nome: 'Carlos', situacao: "realizado" },
-    { id: 5, nome: 'Carlos', situacao: "cancelado" },
-    { id: 6, nome: 'Carlos', situacao: "pendente" },
-]
+  { id: 1, nome: "Carlos", situacao: "pendente" },
+  { id: 2, nome: "Carlos", situacao: "realizado" },
+  { id: 3, nome: "Carlos", situacao: "cancelado" },
+  { id: 4, nome: "Carlos", situacao: "realizado" },
+  { id: 5, nome: "Carlos", situacao: "cancelado" },
+  { id: 6, nome: "Carlos", situacao: "pendente" },
+];
 
-export const ConsultasMedico = () => {
-    //state para o estado da lista cards
-    const [statusLista, setStatusLista] = useState("pendente")
+export const ConsultasMedico = ({ navigation }) => {
+  
 
-    //state par exibição dos modais
+  //state para o estado da lista cards
+  const [statusLista, setStatusLista] = useState("pendente");
 
-    const [showModalCancel, setShowModalCancel] = useState(false)
-    const [showModalAppointment, setShowModalAppointment] = useState(false)
+  //state par exibição dos modais
 
-    return (
-        <ContainerConsulta>
-            <Header />
+  const [showModalCancel, setShowModalCancel] = useState(false);
+  const [showModalAppointment, setShowModalAppointment] = useState(false);
 
-            <CalendarList />
+  return (
+    <ContainerConsulta>
+      <Header />
 
-            {/* Botões */}
+      <CalendarList />
 
-            <ContainerBtnSub>
-                <BtnCadastroM
-                    textButton={"Agendadas"}
-                    clickButton={statusLista === "pendente"}
-                    onPress={() => setStatusLista("pendente")}
-                />
-                <BtnCadastroM
-                    textButton={"Realizadas"}
-                    clickButton={statusLista === "realizado"}
-                    onPress={() => setStatusLista("realizado")}
+      {/* Botões */}
 
-                />
-                <BtnCadastroM
-                    textButton={"Canceladas"}
-                    clickButton={statusLista === "cancelado"}
-                    onPress={() => setStatusLista("cancelado")}
+      <ContainerBtnSub>
+        <BtnCadastroM
+          textButton={"Agendadas"}
+          clickButton={statusLista === "pendente"}
+          onPress={() => setStatusLista("pendente")}
+        />
+        <BtnCadastroM
+          textButton={"Realizadas"}
+          clickButton={statusLista === "realizado"}
+          onPress={() => setStatusLista("realizado")}
+        />
+        <BtnCadastroM
+          textButton={"Canceladas"}
+          clickButton={statusLista === "cancelado"}
+          onPress={() => setStatusLista("cancelado")}
+        />
+      </ContainerBtnSub>
 
-                />
-            </ContainerBtnSub>
+      {/* Lista */}
 
-            {/* Lista */}
-
-            <ListComponent
-
-                showsVerticalScrollIndicator={false}
-                data={Consultas}
-                keyExtractor={(item) => item.id}
-                renderItem={({ item }) =>
-                    statusLista == item.situacao && (
-
-                        <CardPaciente
-
-                            source={require('../../../src/assets/img/ImageCard.png')}
-                            name={'Catarina'}
-                            age={'17 anos'}
-                            type={'Rotina'}
-                            time={'14:00'}
-                            situacao={item.situacao}
-                            onPressCancel={() => setShowModalCancel(true)}
-                            onPressAppointment={() => setShowModalAppointment(true)}
-                        />)}
+      <ListComponent
+        showsVerticalScrollIndicator={false}
+        data={medicoLista}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) =>
+          statusLista == item.situacao && (
+            <CardPaciente
+              source={require("../../../src/assets/img/ImageCard.png")}
+              name={"Catarina"}
+              age={"17 anos"}
+              type={"Rotina"}
+              time={"14:00"}
+              situacao={item.situacao}
+              onPressCancel={() => setShowModalCancel(true)}
+              onPressAppointment={() => setShowModalAppointment(true)}
             />
+          )
+        }
+      />
 
-            {/* Modal cancelar */}
+      {/* Modal cancelar */}
 
-            <ModalCancel
-                visible={showModalCancel}
-                setShowModalCancel={setShowModalCancel}
-            />
+      <ModalCancel
+        visible={showModalCancel}
+        setShowModalCancel={setShowModalCancel}
+      />
 
-            {/* Modal Prontuário */}
+      {/* Modal Prontuário */}
 
-            <ModalCard
-                visible={showModalAppointment}
-                setShowModalAppointment={setShowModalAppointment}
-            />
+      <ModalCard
+        visible={showModalAppointment}
+        setShowModalAppointment={setShowModalAppointment}
+      />
 
-            {/* <Footer /> */}
-        </ContainerConsulta>
-    )
-}
+      {/* <Footer /> */}
+    </ContainerConsulta>
+  );
+};
